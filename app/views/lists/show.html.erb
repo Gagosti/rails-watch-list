@@ -1,13 +1,13 @@
 <h1><%=@list.name.capitalize%></h1>
-
+<div><%= cl_image_tag(@list.photo.key, style: "width: 100px") %></div>
 <% @list.movies.each do |movie| %>
   <%bookmark = Bookmark.find_by(list: @list, movie: movie)%>
   <strong>Movie Title:</strong>
   <li><%=movie.title%></li>
   <strong>Bookmarks:</strong><><small class="text-right flex-shrink-0"><%= link_to "Add new.",  new_list_bookmark_path(bookmark) %></small>
   <li><%=bookmark.comment%><small class="text-right flex-shrink-0"><%= link_to "delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %></small></li>
-
+  <li><%=image_tag(movie.poster_url, style: "width: 100px") %></li>
 <% end %>
 
-
+<%= link_to 'Create Bookmark', new_list_bookmark_path(@list), class: "btn btn-primary" %>
 <%= link_to 'Back', lists_path, class: "btn btn-primary" %>

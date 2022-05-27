@@ -1,9 +1,19 @@
-<h1>List</h1>
+<div class="cover mb-4 d-flex align-items-center justify-content-center">
+  <div class="text-center text-black">
+    <h1>Lists</h1>
+    <h3 class="typed-js" data-controller="typed-js"></h3>
+  </div>
+</div>
 
-<ul>
   <% @lists.each do |list| %>
-  <li><%= list.name %></li>
-  <p><%= link_to 'Show', list_path(list) %></p>
+
+<div>
+
+  <%= cl_image_tag(list.photo.key, style: "width: 100px") %>
+    <h3><%= list.name %></h3>
+
+    <%= link_to 'Show', list_path(list), class: "btn btn-gradient" %>
   <% end %>
-</ul>
+</div>
+
 <p><%=link_to 'New list', new_list_path%></p>
